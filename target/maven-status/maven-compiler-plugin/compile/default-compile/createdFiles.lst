@@ -1,0 +1,16 @@
+com\krystalwatches\UserModel\UserServiceImpl.class
+com\krystalwatches\ProductModel\ProductServiceImpl.class
+com\krystalwatches\UserModel\UserDAO.class
+com\krystalwatches\UserRoleModel\UserRole.class
+com\krystalwatches\ProductModel\ProductService.class
+com\krystalwatches\UserModel\User.class
+com\krystalwatches\UserRoleModel\UserRoleService.class
+com\krystalwatches\HelloController.class
+com\krystalwatches\UserModel\UserDAOImpl.class
+com\krystalwatches\UserRoleModel\UserRoleDAOImpl.class
+com\krystalwatches\UserRoleModel\UserRoleDAO.class
+com\krystalwatches\ProductModel\ProductDAOImpl.class
+com\krystalwatches\ProductModel\Product.class
+com\krystalwatches\ProductModel\ProductDAO.class
+com\krystalwatches\UserModel\UserService.class
+com\krystalwatches\UserRoleModel\UserRoleServiceImpl.class

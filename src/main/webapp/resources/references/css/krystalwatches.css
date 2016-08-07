@@ -1,0 +1,646 @@
+@CHARSET "ISO-8859-1";
+
+
+body
+{
+	background-color: white; 
+	
+	
+}
+
+
+
+
+
+
+
+.display {
+    display: inline-block;
+    vertical-align: middle;
+    transform: translateZ(0);
+    box-shadow: 0 0 1px rgba(255, 0, 0, 1);
+    backface-visibility: hidden;
+    -moz-osx-font-smoothing: grayscale;
+    transition-duration: 0.3s;
+    transition-property: transform;
+    margin-top: 35px;
+
+    background-color: rgba( 33, 104, 128,0.5);
+	text-align: center;
+	padding:20px;
+	width:100%;
+	margin-bottom: 50px;
+	margin-left: 0px;
+   
+  
+}
+
+.display:hover,
+.display:focus,
+.display:active
+{
+    transform: scale(1.1);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.table, th , td  
+{
+	background-color: rgba( 33, 104, 128,0.15);
+  	border: 5px solid black;
+  	padding: 15px;
+  	margin:15px;	
+	margin-right: 15px;
+}
+.table
+th
+{
+	background-color:Black;
+	color:white;
+	text-align: center;
+	font-family: Tahoma,sans-serif;
+	font-size: 150%;
+	opacity:0.7;
+	
+	
+	
+}
+.table
+td
+{
+	
+	font-size: 200%;
+	font-family: Tahoma,sans-serif;
+	text-align: center;
+	color: black;
+	
+}
+
+input[type=text] {
+    width: 130px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-image: url('../../../resources/images/search.png');
+    background-size: 30px 30px;
+    background-position: 10px 10px; 
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+input[type=text]:focus {
+    width: 100%;
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.box{
+	width: 100%;
+	height: 100%;
+	
+    border: 10px solid #000;
+    position: relative;
+    text-align: center;
+   
+    
+}
+.box:after{
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    transition: all 0.5s ease 0s;
+}
+.box:hover:after{
+    background-color: rgba(153,193,153, 0.9);
+}
+.box img{
+    width:100%;
+    height:650px;
+}
+.box .title{
+    width: 100%;
+    padding: 12px 10px;
+    margin: 0;
+    position: absolute;
+    top: 35%;
+    left: 0;
+    font-size: 24px;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+    transition: all 0.5s ease 0s;
+}
+.box:hover .title{
+    top: 15%;
+    z-index: 5;
+}
+.box .box-content{
+    width: 90%;
+    height: 90%;
+    border: 1px solid #fff;
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    padding: 20px;
+    opacity: 0;
+    z-index: 1;
+    transform: scale(0);
+    transition: all 0.5s ease 0s;
+}
+.box:hover .box-content{
+    opacity: 1;
+    transform: scale(1);
+}
+.box .box-content:hover{
+    box-shadow: 0 0 20px #fff;
+    background-color : rgba( 33, 104, 128,1);
+}
+.box .description{
+	font-family:Tahoma ;
+    font-size: 20px;
+    color: white;
+    line-height: 24px;
+    position: relative;
+    top: 35%;
+    z-index:10;
+}
+
+
+
+
+
+
+
+
+<--contact us 
+-->
+
+
+.box2{
+	width: 530%;
+	height: 80%;
+	
+    border: 10px solid #000;
+    position: relative;
+    text-align: center;
+    
+    
+}
+.box2:after{
+    content: "GET IN TOUCH";
+    font-size:450%;
+    padding:0px;
+    width:35%;
+    height: 15%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-top:25%;
+    transition: all 0.5s ease 0s;
+       
+}
+.box2:hover:after{
+    background-color: yellow;
+}
+.box2 img{
+    width:100%;
+    height:650px;
+}
+.box2 .title{
+    width: 100%;
+    padding: 12px 10px;
+    margin: 0;
+    position: absolute;
+    top: 35%;
+    left: 0;
+    font-size: 24px;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 1);
+    z-index: 5;
+    transition: all 0.5s ease 0s;
+}
+.box2:hover .title{
+    top: 10%;
+    color:white;
+}
+.box2 .box-content
+{
+    width: 75%;
+    height: 85%;
+    border: 1px solid green;
+    position: absolute;
+    top: 5%;
+    left: 13%;
+    color:white;
+    
+    
+    padding: 20px;
+    
+    z-index: 4;
+    transform: scale(0);
+    transition: all 0.5s ease 0s;
+}
+.box2:hover .box-content{
+   z-index:4;
+    opacity: 1;
+    transform: scale(1);
+    padding: 10px;
+    background-color: rgba(0,0,0,0.6);
+    
+}
+.box2 .box-content:hover{
+    box-shadow: 0 0 20px #fff;
+    background-color : rgba( 33, 104, 128,0.6);
+    
+}
+
+
+.table1
+{
+	
+	margin-left: 100px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media only screen and (max-width: 990px) {
+    .box{ margin-bottom: 20px; }
+}
+@media only screen and (max-width: 359px) {
+    .box .box-content{ padding: 5px; }
+    .box .title{
+        font-size: 22px;
+        padding: 5px;
+    }
+    .box .description{
+        line-height: 18px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.navbar
+{
+	
+	box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+	transition: 0.10s ease;
+	background-color: #216880;
+	color:white;
+	
+ 	
+}
+.navbar:hover 
+{
+  padding: 6px 0; 
+}
+
+
+.navbar 
+a{
+ 
+  transition: 0.6s;
+  
+
+ 	color:white;
+    font-size: 100%;
+    font-family: Tahoma,sans-serif;
+    
+}
+
+.navbar a:hover{
+ 
+  			transition: 0.6s;
+  
+  			border-right: 2px dotted transparent;
+ 		    padding: 20px 10px 10px 10px;
+ 			color:black;
+   			font-size: 130%;
+    		font-family: Tahoma,sans-serif;
+    
+}
+
+
+
+
+
+#myCarousel
+{
+	width:100%;
+	height:auto;
+	
+	padding: 0px;
+
+}
+
+
+
+
+
+.ab .kd
+img{
+	
+    width:100%;
+	height:400px;
+}
+
+
+
+
+
+
+
+
+
+
+#login-dp{
+    min-width: 250px;
+    padding: 14px 14px 0;
+    overflow:hidden;
+    background-color:rgba(255,255,255,.8);
+}
+#login-dp .help-block{
+    font-size:12px    
+}
+#login-dp .bottom{
+    background-color:rgba(255,255,255,.8);
+    border-top:1px solid #ddd;
+    clear:both;
+    padding:14px;
+}
+#login-dp .social-buttons{
+    margin:12px 0    
+}
+#login-dp .social-buttons a{
+    width: 49%;
+}
+#login-dp .form-group {
+    margin-bottom: 10px;
+}
+.btn-fb{
+    color: #fff;
+    background-color:#3b5998;
+}
+.btn-fb:hover{
+    color: #fff;
+    background-color:#496ebc 
+}
+.btn-tw{
+    color: #fff;
+    background-color:#55acee;
+}
+.btn-tw:hover{
+    color: #fff;
+    background-color:#59b5fa;
+}
+@media(max-width:768px){
+    #login-dp{
+        background-color: inherit;
+        color: #fff;
+    }
+    #login-dp .bottom{
+        background-color: inherit;
+        border-top:0 none;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Removes the default 20px margin and creates some padding space for the indicators and controls */
+.carousel {
+    margin-bottom: 0;
+	padding: 0 40px 30px 40px;
+}
+/* Reposition the controls slightly */
+.carousel-control {
+	left: -12px;
+}
+.carousel-control.right {
+	right: -12px;
+}
+/* Changes the position of the indicators */
+.carousel-indicators {
+	right: 50%;
+	top: auto;
+	bottom: 0px;
+	margin-right: -19px;
+}
+/* Changes the colour of the indicators */
+.carousel-indicators li {
+	background: #c0c0c0;
+}
+.carousel-indicators .active {
+background: #333333;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.button3{
+
+height:45px;
+border:none;
+outline:none;
+box-shadow:4px 4px 5px 0 black;
+color:#fff;
+font-size:20px;
+padding:10px;
+
+  background-color: rgb( 33, 104, 128);
+border-radius:3px;
+
+
+}
+.button3:hover{
+ 		background-color: rgba( 33, 104, 128,0.2);
+		cursor:pointer
+}
+.button3:active{
+margin-left:-4px;
+margin-bottom:-4px;
+padding-top:2px;
+box-shadow:none;
+background-color: black;
+
+}
+
+
+.btn1
+{
+	padding:30px;
+}
+
+.button4{
+height:45px;
+border:none;
+outline:none;
+box-shadow:4px 4px 5px 0 black;
+color:#fff;
+font-size:20px;
+padding:10px;
+
+  background-color: rgb( 33, 104, 128);
+border-radius:3px;
+
+}
+.button4:hover{
+ 		background-color: rgba( 33, 104, 128,0.2);
+		cursor:pointer
+}
+.button4:active{
+margin-left:-4px;
+margin-bottom:-4px;
+padding-top:2px;
+box-shadow:none;
+background-color: black;
+
+}
+
+
+
+.button5
+{
+height:45px;
+border:none;
+outline:none;
+box-shadow:4px 4px 5px 0 black;
+color:#fff;
+font-size:20px;
+padding:10px;
+
+  background-color: rgb( 33, 104, 128);
+border-radius:3px;
+
+
+}
+.button5:hover{
+ 		background-color: rgba( 33, 104, 128,0.2);
+		cursor:pointer
+}
+.button5:active
+{
+margin-left:-4px;
+margin-bottom:-4px;
+padding-top:2px;
+box-shadow:none;
+background-color: black;
+
+}
+
+
+
+footer {
+
+  position:fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 10px;
+
+  background-color: #216880;
+  text-align: center;
+  color:white;
+  z-index: 4;
+  
+}
