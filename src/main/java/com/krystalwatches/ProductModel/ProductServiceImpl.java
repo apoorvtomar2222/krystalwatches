@@ -38,19 +38,10 @@ public class ProductServiceImpl implements ProductService {
 		return dao.getAllProducts();
 	}
 
+	
 	@Transactional
-	public long getMaxProductId() {
-		
-		long id = -1;
-		
-		List<Product> l = dao.getAllProducts();
-		
-		for( Product prod : l )
-		{
-			if( prod.getProductId() > id )
-				id = prod.getProductId();
-		}
-		
-		return id;
+	public Product getProductWithMaxId() {
+		// TODO Auto-generated method stub
+		return dao.getProductWithMaxId();
 	}
 }

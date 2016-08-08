@@ -7,6 +7,9 @@
 	import javax.persistence.GeneratedValue;
 	import javax.persistence.GenerationType;
 	import javax.persistence.Id;
+import javax.persistence.Transient;
+
+import org.springframework.web.multipart.MultipartFile;
 
 	
 	
@@ -32,13 +35,26 @@
 		private String ProductQty;
 		
 		private String ProductImage;
+		@Transient
+		private MultipartFile ProductFile;
 		
+		
+		
+		public MultipartFile getProductFile() {
+			return ProductFile;
+		}
+
+		public void setProductFile(MultipartFile productFile) {
+			ProductFile = productFile;
+		}
+
 		public Product()
 		{
 			
 		}
 
-		public long getProductId() {
+		public long getProductId()
+		{
 			return ProductId;
 		}
 

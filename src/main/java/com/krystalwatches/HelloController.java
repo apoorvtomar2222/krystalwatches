@@ -1,5 +1,9 @@
 package com.krystalwatches;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.security.Principal;
 import java.util.List;
 
@@ -189,12 +193,55 @@ public class HelloController
 	{
 		System.out.println(p.getProductName());
 		
-		ps.insertProduct(p);
+		ps.insertProduct( p );
 		
+		Product i1 = ps.getProductWithMaxId();
+		
+		System.out.println(i1.getProductId());
+		
+		try
+	    {
+			String path = context.getRealPath("/");
+	        
+	        System.out.println(path);
+	        
+	        File directory = null;
+	        
+	        //System.out.println(ps.getProductWithMaxId());
+	        
+	        if (p.getProductFile().getContentType().contains("image"))
+	        {
+	            directory = new File(path + "\\resources\\images");
+	            
+	            System.out.println(directory);
+	            
+	            byte[] bytes = null;
+	            File file = null;
+	            bytes = p.getProductFile().getBytes();
+	            
+	            if (!directory.exists()) directory.mkdirs();
+	            
+	            file = new File(directory.getAbsolutePath() + System.getProperty("file.separator") + "image_" + i1.getProductId() + ".jpg");
+	            
+	            System.out.println(file.getAbsolutePath());
+	            
+	            BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(file));
+	            stream.write(bytes);
+	            stream.close();
+
+	        }
+	        
+	        i1.setProductImage("resources/images/image_" + i1.getProductId() + ".jpg");
+	        
+	        ps.updateProduct(i1);
+	    }
+	    catch (Exception e)
+	    {
+	    	e.printStackTrace();
+	    }
 		
 		return "redirect:product";
 	}
-	
 	
 	/*UPDATE*/
 	

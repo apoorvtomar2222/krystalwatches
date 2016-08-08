@@ -41,15 +41,12 @@
 <br>
 <div class="container">
 
-<a href="addproduct" class="button3 btn-center btn-success btn pull-right"  align="right" >Add Product</a>
-
-</div>
-
-
+<a href="addproduct" class="button4 btn-center btn-success btn pull-right"  align="right" >Add Product</a>
 
 <input type= "text" placeholder="Search Product" ng-model="searchProduct.ProductName" />
+
 <input type="hidden"  value="{{ x.Product_Id }}"/>
-<br> <br>
+<br><br>
 <table class="table ">
 
  	<thead>
@@ -60,7 +57,7 @@
  		<th>Price</th>
  		<th>Quantity</th>
  		<th>Image</th>
- 		<th>Button</th>
+ 		<th></th>
  		
  	</tr>
  	</thead>
@@ -71,21 +68,21 @@
  		<td>{{x.ProductName}}</td>
  		<td>{{x.ProductPrice}}</td>
  		<td>{{x.ProductQty}}</td>
- 		<td> <img ng-src="{{ x.flag }}" " height=" 150px" width="200px"  ></td>
- 		<td>
+ 		<td> <img ng-src="${pageContext.request.contextPath}/{{ x.flag }}" " height=" 150px" width="200px"  ></td>
  	
-<div class="btn1"><a href="${pageContext.request.contextPath}/view/{{x.ProductID}}" class="button3" >VIEW</a></div>
+ 	<td>
+<div class="btn1"><a href="${pageContext.request.contextPath}/view/{{x.ProductID}}" class="button3 " >VIEW</a></div>
 
 
-<div class="btn1"><a href="${pageContext.request.contextPath}/update/{{x.ProductID}}" class="button4">UPDATE</a></div>
+<div class="btn1"><a href="${pageContext.request.contextPath}/update/{{x.ProductID}}" class="button3">UPDATE</a></div>
  	
-<div class="btn1"><a href="${pageContext.request.contextPath}/delete/{{x.ProductID}}" class="button5">DELETE</a></div> 		
- 	
+<div class="btn1"><a href="${pageContext.request.contextPath}/delete/{{x.ProductID}}" class="button3">DELETE</a></div> 		
+ 	</td>
  	
  </tbody>
  
 
  </table>
-
+</div>
 </body>
 </html>
