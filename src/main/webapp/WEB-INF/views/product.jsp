@@ -68,7 +68,7 @@
  		<td>{{x.ProductName}}</td>
  		<td>{{x.ProductPrice}}</td>
  		<td>{{x.ProductQty}}</td>
- 		<td> <img ng-src="${pageContext.request.contextPath}/{{ x.flag }}" " height=" 150px" width="200px"  ></td>
+ 		<td> <img ng-src="${pageContext.request.contextPath}/{{ x.flag }}" height=" 150px" width="200px"  ></td>
  	
  	<td>
 <div class="btn1"><a href="${pageContext.request.contextPath}/view/{{x.ProductID}}" class="button3 " >VIEW</a></div>
@@ -82,7 +82,7 @@
  </tbody>
  
 
- </table>
+</table>
 </div>
 </body>
 </html>

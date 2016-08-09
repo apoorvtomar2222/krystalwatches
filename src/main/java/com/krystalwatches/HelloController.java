@@ -164,6 +164,7 @@ public class HelloController
 		 mav.addObject("ProductCategory",  p.getProductCategory() );
 		 mav.addObject("ProductPrice",  p.getProductPrice() );
 		 mav.addObject("ProductQty",  p.getProductQty() );
+		 mav.addObject("ProductImg",  p.getProductImage() );
 	 }
 	 
 	
@@ -263,17 +264,52 @@ public class HelloController
 		}
 	
 		@RequestMapping(value="/updateproduct", method = RequestMethod.POST)  	 
-		public String updateproduct( @ModelAttribute( "newproduct2" ) Product p  )
+		public String insertproduct1( @ModelAttribute( "newproduct2" ) Product p  )
 		{
-			System.out.println(p.getProductName());
 			
-			ps.updateProduct(p);
+			try
+		    {
+				String path = context.getRealPath("/");
+		        
+		        System.out.println(path);
+		        
+		        File directory = null;
+		        
+		        //System.out.println(ps.getProductWithMaxId());
+		        
+		        if (p.getProductFile().getContentType().contains("image"))
+		        {
+		            directory = new File(path + "\\resources\\images");
+		            
+		            System.out.println(directory);
+		            
+		            byte[] bytes = null;
+		            File file = null;
+		            bytes = p.getProductFile().getBytes();
+		            
+		            if (!directory.exists()) directory.mkdirs();
+		            
+		            file = new File(directory.getAbsolutePath() + System.getProperty("file.separator") + "image_" + p.getProductId() + ".jpg");
+		            
+		            System.out.println(file.getAbsolutePath());
+		            
+		            BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(file));
+		            stream.write(bytes);
+		            stream.close();
+
+		        }
+		        
+		        p.setProductImage("resources/images/image_" + p.getProductId() + ".jpg");
+		        
+		        ps.updateProduct(p);
+		    }
+		    catch (Exception e)
+		    {
+		    	e.printStackTrace();
+		    }
 			
 			return "redirect:product";
 		}
-		
-		
-		
 		
 		/*SIGNUP PAGE*/
 		
@@ -378,14 +414,43 @@ public class HelloController
 			}
 		 
 		 
+		 /*FLOWS*/
 		 
 		 
+		 @RequestMapping("page1") 
+		 public String flow()	
+			{	
+				return "flows/page1";
+			}
 		 
+		 @RequestMapping("page2") 
+		 public String flow1()
+			{	
+				return "flows/page2";
+			}
+		 @RequestMapping("page3") 
+		 public String flow3()	
+			{	
+				return "flows/page3";
+			}
+		 @RequestMapping("page4") 
+		 public String flow4()	
+			{	
+				return "flows/page4";
+			}
 		 
+		 @RequestMapping("head-meta") 
+		 public String head_meta()	
+			{	
+				return "head-meta";
+			}
 		 
-		 
-		 
-		 
+		 @RequestMapping("head") 
+		 public String head()	
+			{	
+				return "head";
+			}
+		
 		 
 		 
 		 

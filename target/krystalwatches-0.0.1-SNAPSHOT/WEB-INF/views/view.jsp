@@ -22,6 +22,11 @@
   <div class="container">
         <table class="table" >    
          <tr>    
+             
+          <td colspan="2"><img src="${pageContext.request.contextPath}/${ProductImg}" width="40%" class="img img-responsive img-thumbnail"></img></td>  
+         </tr>    
+         
+         <tr>    
           <td>Product Name : </td>   
           <td>${ProductName}</td>  
          </tr>    
@@ -38,6 +43,8 @@
           <td>Quantity :</td>    
           <td>${ProductQty}</td>  
          </tr> 
+        	
+        
         
         </table>    
        

@@ -22,10 +22,11 @@
     <br>
     <br>
     
+  
+  
+       <form:form action="insertproduct" method="post" modelAttribute="newproduct" enctype="multipart/form-data">    
 <div class="container">
-  
-  
-       <form:form action="insertproduct" method="post" modelAttribute="newproduct">    
+
         <table >    
          <tr>    
           <td>Product Name : </td>   
@@ -45,13 +46,39 @@
           <td><form:input path="productQty" /></td>  
          </tr> 
          
+           <tr>    
+          <td>Price :</td>    
+          <td><form:input path="productPrice" /></td>  
+         </tr> 
          
+         
+         
+         <tr>
+							  		<td><form:label path="productImage" for="productImage">Image:</form:label></td>
+							  		<td>
+							  		
+							  			<label class="form-control"><span id="file_display1">Choose Image</span><span style="position: relative; "><form:input path="productFile" onchange="changeFileDisplay1();" type="file" style="opacity:0;" class="form-control"  id="imageFile1"/></span></label>
+							  		
+								  		<script type="text/javascript">
+								  			
+								  			function changeFileDisplay1()
+								  			{
+								  				document.getElementById("file_display1").innerHTML = $('#imageFile1').val();;
+								  			}
+								  		
+								  		</script>
+							  		
+									</td>
+							  	</tr>
+        
+        
          <tr>    
-          <td colspan="2"><input type="submit" value="Save" /></td>    
+          <td colspan="2"><input type="submit" class="button3  btn-center" value="Save" /></td>    
          </tr>    
         </table>    
-       </form:form>    
-
 </div>
+       </form:form>    
+<br>
+<br>
 </body>
 </html>
