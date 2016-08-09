@@ -19,6 +19,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -450,12 +451,41 @@ public class HelloController
 			{	
 				return "head";
 			}
-		
+		/////////////////////////////////////////////////////////////////////////////////////
 		 
+		 @RequestMapping(value="/initiateFlow" , method = RequestMethod.GET)
+		public String redirect(HttpServletRequest request)
+		 {
+				
+				String retval = "";
+				
+				if( request.getUserPrincipal() == null )
+					retval = "redirect:/cart?user=none";
+				else
+					retval = "redirect:/cart?user="+request.getUserPrincipal().getName();
+					
+				return retval;
+			}
+		 	
 		 
+			
+			public String test()
+			{
+				Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+			    if (auth != null && !auth.getName().equals("anonymousUser"))
+			    {    
+			    	System.out.println(auth.getName());
+			    	//System.out.println("User present");
+			    	return "false";
+			    }
+			    else
+			    {
+			    	System.out.println("User not present");
+			    	return "true";
+			    }
 		 
 		 
 		 
 	}	 
 				
-	
+	}

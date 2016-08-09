@@ -20,7 +20,7 @@
  
 <h1 style="text-align:center" >Page 1</h1>
 
-<button type="button" class="btn btn-success"><span class="glyphicon glyphicon-chevron-left"></span>NEXT</button>
+<a href="${flowExecutionUrl}&_eventId=goToCheckout" class="btn btn-success btn pull-right">NEXT<span class="glyphicon glyphicon-chevron-right"></span></a>
 
 </body>
 </html>

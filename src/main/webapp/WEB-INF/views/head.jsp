@@ -24,6 +24,8 @@
         <li><a href="${pageContext.request.contextPath}/aboutus">About Us</a></li>
         <li><a href="${pageContext.request.contextPath}/contact_us">Contact Us</a></li>
         <li><a href="${pageContext.request.contextPath}/product">Products</a></li>
+        <li><a href="${pageContext.request.contextPath}/initiateFlow">Flow</a></li>
+        
 
       </ul>
       <ul class="nav navbar-nav navbar-right">
