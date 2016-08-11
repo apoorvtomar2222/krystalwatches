@@ -16,7 +16,7 @@ public class CartServiceImpl implements CartService
 	@Transactional
 	public Cart getCartById(int cartId) {
 		// TODO Auto-generated method stub
-		return null;
+		return dao.getCartById(cartId);
 	}
 	@Transactional
 	public void update(Cart cart) {
@@ -25,13 +25,12 @@ public class CartServiceImpl implements CartService
 	}
 	@Transactional
 	public void add(Cart cart) {
-		// TODO Auto-generated method stub
-		
+		dao.add(cart);
 	}
 	@Transactional
 	public void delete(int i) {
 		// TODO Auto-generated method stub
-		
+		dao.delete(i);
 	}
 	@Transactional
 	public List<Cart> getAllProduct() {

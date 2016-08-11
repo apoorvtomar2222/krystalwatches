@@ -638,7 +638,10 @@ background-color: black;
 
 }
 
-
+.cntxt
+{
+background-image: url("${pageContext.request.contextPath}/resources/images/thanku.jpg" );	
+}
 
 footer {
 

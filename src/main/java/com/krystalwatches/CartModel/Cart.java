@@ -16,6 +16,9 @@ public class Cart implements Serializable
 	private String Price;
 	private String Address;
 	private String BillingAddress;
+	private String ProductID;
+	private String UserName;
+	
 	public String getProductID() {
 		return ProductID;
 	}
@@ -28,8 +31,7 @@ public class Cart implements Serializable
 	public void setUserName(String userName) {
 		UserName = userName;
 	}
-	private String ProductID;
-	private String UserName;
+	
 
 public int getID() 
 	{

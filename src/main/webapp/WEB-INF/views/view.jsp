@@ -38,14 +38,18 @@
           <td>Category :</td>    
           <td>${ProductCategory}</td>  
          </tr>   
-         
-           <tr>    
-          <td>Quantity :</td>    
-          <td>${ProductQty}</td>  
-         </tr> 
-        	
-        
-        
+        	<form action="${pageContext.request.contextPath}/addToCart" method="post">
+    		
+    			<input type ="hidden" value="${ProductId}" name="pid" />
+    			<tr>
+				<td>Qty</td>
+				<td><input type="number" min="1" max="10" name="pqty" class="form form-input"/></td>         
+    			</tr>
+    		<tr>
+    		<td></td>	
+    		<td><input type="submit" value="Add To Cart" class="btn btn-success"/></td>
+    		</tr>    	
+        	</form>
         </table>    
        
 </div>

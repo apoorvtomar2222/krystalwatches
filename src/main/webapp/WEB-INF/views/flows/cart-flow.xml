@@ -30,12 +30,12 @@ http://www.springframework.org/schema/webflow/spring-webflow-2.4.xsd">
 	
 	<view-state id="productsPage" view="externalRedirect:/product" />
 	
-	<view-state id="ViewCompleteOrder" view="/WEB-INF/views/flows/viewcartcompleteorder.jsp">
+	<view-state id="ViewCompleteOrder" view="/WEB-INF/views/flows/page3.jsp">
 		<transition to="goToCheckout" on="BackToConfirmDetails" />
 		<transition to="confirmOrder" on="ConfirmOrder" />
 	</view-state>
 	 
 	 
-	<end-state id="confirmOrder" view="/WEB-INF/views/flows/viewcartthankyoupage.jsp"/>
+	<end-state id="confirmOrder" view="/WEB-INF/views/flows/page4.jsp"/>
 	
 </flow>

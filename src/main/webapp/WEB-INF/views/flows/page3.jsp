@@ -20,8 +20,8 @@
  
 <h1>Page 3</h1>
 
-<button type="button" class="btn btn-danger btn pull-left"><span class="glyphicon glyphicon-chevron-left"></span>PREVIOUS</button>
-<button type="button" class="btn btn-success btn pull-right">NEXT<span class="glyphicon glyphicon-chevron-right"></span></button>
+<a href="${flowExecutionUrl}&_eventId=BackToConfirmDetails" class="btn btn-danger btn pull-left"><span class="glyphicon glyphicon-chevron-left"></span>PREVIOUS</a>
+<a href="${flowExecutionUrl}&_eventId=ConfirmOrder" class="btn btn-success btn pull-right">NEXT<span class="glyphicon glyphicon-chevron-right"></span></a>
 
 </body>
 </html>

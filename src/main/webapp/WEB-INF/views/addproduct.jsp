@@ -25,7 +25,7 @@
   
   
        <form:form action="insertproduct" method="post" modelAttribute="newproduct" enctype="multipart/form-data">    
-<div class="container">
+ <div class="container">
 
         <table >    
          <tr>    

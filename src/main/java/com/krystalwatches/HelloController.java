@@ -1,4 +1,4 @@
-package com.krystalwatches;
+ package com.krystalwatches;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -27,6 +27,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.krystalwatches.CartModel.Cart;
+import com.krystalwatches.CartModel.CartService;
 import com.krystalwatches.ProductModel.Product;
 
 import com.krystalwatches.ProductModel.ProductService;
@@ -50,6 +53,9 @@ public class HelloController
 	
 	@Autowired
     ServletContext context;
+	
+	@Autowired
+	CartService cs;
 	
 	@RequestMapping("/") 
 	public String main123()	
@@ -130,11 +136,10 @@ public class HelloController
 		{	
 			return "index";
 		}
+
 	 
 	 
-	 
-	 
-	/*ADDPRODUCT*/
+	 /* PAGE ADDPRODUCT*/
 	
 	 @RequestMapping(value="/addproduct")  	 
 	public ModelAndView addproduct()
@@ -166,6 +171,7 @@ public class HelloController
 		 mav.addObject("ProductPrice",  p.getProductPrice() );
 		 mav.addObject("ProductQty",  p.getProductQty() );
 		 mav.addObject("ProductImg",  p.getProductImage() );
+		 mav.addObject("ProductId",  p.getProductId() );
 	 }
 	 
 	
@@ -175,10 +181,7 @@ public class HelloController
 	
 	
 /*DELETE*/	
-	
-	
-	
-	
+
 	@RequestMapping(value="/delete/{productID}")  	 
 	public String deleteproduct1(@PathVariable("productID") int prodid)
 	{
@@ -189,6 +192,7 @@ public class HelloController
 	return "redirect:http://localhost:8080/krystalwatches/product";
 	}
 
+/*INSERT PRODUCT*/
 	
 	@RequestMapping(value="/insertproduct", method = RequestMethod.POST)  	 
 	public String insertproduct( @ModelAttribute( "newproduct" ) Product p  )
@@ -328,6 +332,7 @@ public class HelloController
 	
 
 			/*ADD NEW USER*/
+		 
 		 @RequestMapping(value="/insertuser" , method = RequestMethod.POST)
 		 public ModelAndView insertUser( @Valid @ModelAttribute("newuser") User p , BindingResult bind)
 		 {
@@ -419,10 +424,97 @@ public class HelloController
 		 
 		 
 		 @RequestMapping("page1") 
-		 public String flow()	
-			{	
-				return "flows/page1";
+		 public ModelAndView page1()
+			{
+				ModelAndView mav = new ModelAndView( "flows/page1" );
+				
+				List<Cart> list = cs.getAllProduct();
+				
+				JSONArray jarr = new JSONArray();
+				
+				String user = "";
+				
+				Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+			    if (auth != null && !auth.getName().equals("anonymousUser"))
+			    {    
+			    	user = auth.getName();
+			    }
+				
+				for( Cart item:list )
+				{
+					
+					if( item.getUserName().equals(user) )
+					{
+						JSONObject jobj = new JSONObject();
+						
+						jobj.put("ProductID", item.getProductID() );
+						jobj.put("ProductName", item.getName() );
+						jobj.put("ProductPrice", item.getPrice() );
+						
+						Product p = ps.getProduct( Integer.parseInt(item.getProductID()) );
+						
+						jobj.put("ProductImage", p.getProductImage());
+						jobj.put("ProductQty", item.getQty());
+						 
+						jarr.add(jobj);
+					}
+					
+				 }
+				 
+				System.out.println(jarr);
+				
+				mav.addObject("data", jarr.toJSONString());
+				
+				return mav;
+			
 			}
+
+		 @RequestMapping(value="/addToCart")	
+			public String addToCart( HttpServletRequest request )
+			{	
+				
+				Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+			    if (auth != null && !auth.getName().equals("anonymousUser"))
+			    {    
+			    	System.out.println(request.getParameter("pid"));
+					System.out.println(request.getParameter("pqty"));
+					
+					int qty = 1;
+					
+					try
+					{
+						qty = Integer.parseInt(request.getParameter("pqty"));
+						
+						if( !(qty >= 1 && qty <= 10) )
+							throw new Exception();
+					}
+					catch(Exception e)
+					{
+						System.out.println("Invalid Qty");
+					}
+					
+					Cart c = new Cart();
+					
+					c.setProductID(request.getParameter("pid"));
+					c.setQty(""+qty);
+					
+					Product p = ps.getProduct( Integer.parseInt(request.getParameter("pid")) );
+					
+					c.setName(p.getProductName());
+					c.setPrice(p.getProductPrice());
+					
+					c.setUserName(auth.getName());
+					
+					cs.add(c);
+					
+					
+			    }
+			    
+			    return "redirect:initiateFlow";
+			    
+			}
+		 
+
 		 
 		 @RequestMapping("page2") 
 		 public String flow1()

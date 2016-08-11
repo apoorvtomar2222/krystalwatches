@@ -20,8 +20,9 @@
  
 <h1>Page 2</h1>
 
-<button type="button" class="btn btn-danger btn pull-left"><span class="glyphicon glyphicon-chevron-left"></span>PREVIOUS</button>
-<button type="button" class="btn btn-success btn pull-right">NEXT<span class="glyphicon glyphicon-chevron-right"></span></button>
+<a href="${flowExecutionUrl}&_eventId=BackToCart" class="btn btn-danger btn pull-left"><span class="glyphicon glyphicon-chevron-left"></span>PREVIOUS</a>
+
+<a href="${flowExecutionUrl}&_eventId=ViewCompleteOrder" class="btn btn-success btn pull-right">NEXT<span class="glyphicon glyphicon-chevron-right"></span></a>
 
 
 </body>
