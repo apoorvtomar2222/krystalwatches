@@ -10,7 +10,43 @@
  <c:import url="/head-meta" />
 
 </head>
-<body>
+
+
+<script type="text/javascript">
+'use strict';
+		var myApp = angular.module('myApp',[]);
+	
+		myApp.factory('UserService', ['$http', '$q', function($http, $q)
+		{
+	 
+    	return {
+         
+    		deleteAllFromCart: function(item){
+                    return $http.post('http://localhost:8080/krystalwatches/flows/deleteAllFromCart/', item)
+                            .then(
+                                    function(response){
+                                        return response.data;
+                                    }, 
+                                    function(errResponse){
+                                        console.error('Error while sending data');
+                                        return $q.reject(errResponse);
+                                    }
+                            );
+            }
+    };
+ 
+}]);
+	
+	///////////////
+	
+	
+	myApp.controller("abc",['$scope', 'UserService' ,function($scope , $UserService)
+	{
+		$UserService.deleteAllFromCart();
+	}]); 
+	
+</script>
+<body ng-app="myApp" ng-controller="abc">
  <c:import url="/head" />
  
  <br>
@@ -19,7 +55,7 @@
  <br>
  <div class="container">
 <div class="xyz">
-<%-- <img src="${pageContext.request.contextPath}/resources/images/thanku.jpg" width="100%" height="500px;"/> --%>
+<img src="${pageContext.request.contextPath}/resources/images/thanku.jpg" width="100%" height="500px;"/> 
 <a href="${pageContext.request.contextPath}/index" class="btn btn-success"><span class="glyphicon glyphicon-chevron-left"></span>PREVIOUS</a>
 </div>
 </div>

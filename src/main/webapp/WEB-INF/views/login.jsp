@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
-    <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <%@page isELIgnored="false"%>
 
-    
-    
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -18,55 +19,59 @@
 
 
 <body>
-		<c:import url="head.jsp" />
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-			
-		
-<div align="center">
+	<c:import url="head.jsp" />
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
 
-  							<form action="login" method="post">
-					    		
-					    		
-					    		<c:if test="${param.error != null}">
-	                                <div class="alert alert-danger">
-	                                    <p>Invalid Username and password.</p>
-	                                </div>
-	                            </c:if>
-	                            <c:if test="${param.logout != null}">
-	                                <div class="alert alert-success">
-	                                    <p>You have been logged out successfully.</p>
-	                                </div>
-	                            </c:if>
-					    	
 
-        
-            <table>
-                <tr>
-                    <td colspan="2" align="center"><h2>LOGIN PAGE</h2></td>
-                </tr>
-                <tr>
-                <td>Username:</td><td><input type="text" name ="Username" path="Username" ></td>    
-                </tr>
-                
-                <tr>
-                    <td>Password:</td>
-                    <td><input type="password" name="Password" path="Password" ></td>
-                </tr>
-                
-                
-                
-                <input type="hidden" name="${_csrf.parameterName}"   value="${_csrf.token}" />
-                <tr>
-                    <td colspan="2" align="center"><input type="submit" value="Save" /></td>
-                </tr>
-            </table>
-        </form>
-        </div>
-       <br><br>
+	<div align="center">
+
+		<form action="login" method="post">
+
+
+			<c:if test="${param.error != null}">
+				<div class="alert alert-danger">
+					<p>Invalid Username and password.</p>
+				</div>
+			</c:if>
+			<c:if test="${param.logout != null}">
+				<div class="alert alert-success">
+					<p>You have been logged out successfully.</p>
+				</div>
+			</c:if>
+
+
+
+			<table>
+				<tr>
+					<td colspan="2" align="center"><h2>LOGIN PAGE</h2></td>
+				</tr>
+				<tr>
+					<td>Username:</td>
+					<td><input type="text" name="Username" path="Username"></td>
+				</tr>
+
+				<tr>
+					<td>Password:</td>
+					<td><input type="password" name="Password" path="Password"></td>
+				</tr>
+
+
+
+				<input type="hidden" name="${_csrf.parameterName}"
+					value="${_csrf.token}" />
+				<tr>
+					<td colspan="2" align="center"><input type="submit"
+						value="Save" /></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	<br>
+	<br>
 
 </body>
 </html>
