@@ -109,9 +109,9 @@
 
 	<a href="${flowExecutionUrl}&_eventId=BackToConfirmDetails"
 		class="btn btn-danger btn pull-left"><span
-		class="glyphicon glyphicon-chevron-left"></span>PREVIOUS</a>
+		class="glyphicon glyphicon-chevron-left"></span>Back To Update Address</a>
 	<a href="${flowExecutionUrl}&_eventId=ConfirmOrder"
-		class="btn btn-success btn pull-right">NEXT<span
+		class="btn btn-success btn pull-right">Confirm Order<span
 		class="glyphicon glyphicon-chevron-right"></span></a>
 
 
@@ -166,10 +166,16 @@
 				
 		<table class="table" align="center">
 		<br>
+		
+				<tr>
+				<th></th>
+				<th></th>
+				</tr>
+		
 				<tr>
 				<td>Product Name</td>
 				<td>{{x.ProductName}}</td>
-</tr>
+				</tr>
 	<tr>
 				<td>Qty</td>
 				<td>{{x.ProductQty}}</td>

@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<title>Bootstrap Example</title>
+<title>Krystal Watches</title>
 
 
 <c:import url="head-meta.jsp" />

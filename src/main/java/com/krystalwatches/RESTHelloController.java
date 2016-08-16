@@ -124,7 +124,14 @@ public class RESTHelloController {
 
 				Product p = ps.getProduct(Integer.parseInt(item.getProductID()));
 
+				/*test when product not found*/
+				
+				if( p == null || p.getProductImage() == null )
+					jobj.put("ProductImage", "");
+				else
+
 				jobj.put("ProductImage", p.getProductImage());
+
 				jobj.put("ProductQty", item.getQty());
 				jobj.put("CartId", item.getID());
 				jobj.put("ShippingAddress", item.getAddress());
@@ -237,5 +244,6 @@ public class RESTHelloController {
 	    	res.put("status", "updated");
 	    	
         return new ResponseEntity<String>(res.toJSONString(), HttpStatus.CREATED);
-    }
+    
+	}
 }

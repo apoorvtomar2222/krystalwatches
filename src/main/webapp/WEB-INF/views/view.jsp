@@ -10,7 +10,7 @@
 
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Detail</title>
 <c:import url="head-meta.jsp" />
 
 </head>
@@ -43,6 +43,16 @@
 				<td>Category :</td>
 				<td>${ProductCategory}</td>
 			</tr>
+
+			<tr>
+				<td>Price :</td>
+				<td>${ProductPrice}</td>
+			</tr>
+
+
+			<%
+				if (request.isUserInRole("USER")) {
+			%>
 			<form action="${pageContext.request.contextPath}/addToCart"
 				method="post">
 
@@ -58,6 +68,13 @@
 						class="btn btn-success" /></td>
 				</tr>
 			</form>
+			</div>
+			<%
+				}
+			%>
+
+
+
 		</table>
 
 	</div>

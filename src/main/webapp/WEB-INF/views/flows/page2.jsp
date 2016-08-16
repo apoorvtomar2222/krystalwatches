@@ -87,10 +87,10 @@
 
 	<a href="${flowExecutionUrl}&_eventId=BackToCart"
 		class="btn btn-danger btn pull-left"><span
-		class="glyphicon glyphicon-chevron-left"></span>PREVIOUS</a>
+		class="glyphicon glyphicon-chevron-left"></span>Back To Cart</a>
 
 	<a href="${flowExecutionUrl}&_eventId=ViewCompleteOrder"
-		class="btn btn-success btn pull-right">NEXT<span
+		class="btn btn-success btn pull-right">Confirm Details<span
 		class="glyphicon glyphicon-chevron-right"></span></a>
 		
 		
@@ -108,6 +108,8 @@
 	</div>
 	<br><br>
 	<div><input type="button" value="Update" class="btn btn-success" ng-click="UpdateAddresses()" ng-disabled="shippingAddress=='' || billingAddress==''"></div>
+	<br><br>
+	<div ng-show="updated == 'updated'"><label class="alert alert-success">Updated Successfully</label></div>
 	<br><br>
 	
 </div>

@@ -30,11 +30,11 @@
 				<li><a href="${pageContext.request.contextPath}/contact_us">Contact
 						Us</a></li>
 				<li><a href="${pageContext.request.contextPath}/product">Products</a></li>
-				<li><a href="${pageContext.request.contextPath}/initiateFlow">Flow</a></li>
+				
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">
-
+<li><a href="${pageContext.request.contextPath}/initiateFlow" >View Cart</a></li>
 				<c:choose>
 					<c:when test="${not empty pageContext.request.userPrincipal}">
 						<li><a href="${pageContext.request.contextPath}/index">${pageContext.request.userPrincipal.name}</a></li>

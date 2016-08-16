@@ -113,10 +113,13 @@
 	<br>
 	<div class="container">
 		<a href="${flowExecutionUrl}&_eventId=goToCheckout"
-			class="btn btn-primary btn-lg btn pull-right">Next<span
+			class="btn btn-primary btn-lg btn pull-right">Check Out<span
 			class="glyphicon glyphicon-chevron-right"></span></a>
 
-	</div>
+	<br>
+	<br>
+	<br>
+	<br>
 
 	<div ng-repeat="x in data"
 		style="background-color: rgba(255, 255, 255, 0.9);">
@@ -157,7 +160,9 @@
 
 		</table>
 	</div>
-
-
+</div>
+<br>
+<br><br>
+<br>
 </body>
 </html>

@@ -36,7 +36,7 @@
 							and a trusted and convenient online shopping experience – and
 							provide sellers a world-class e-commerce platform. We are
 							committed to ensure 100% Purchase Protection for your shopping
-							done on Amazon.in so that you can benefit from a safe and secure
+							done on krystal Watches so that you can benefit from a safe and secure
 							online ordering experience, convenient payment options such as
 							cash on delivery, easy returns and enjoy a completely hassle free
 							online shopping experience.</p>

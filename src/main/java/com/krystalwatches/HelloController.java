@@ -15,6 +15,8 @@ import javax.validation.Valid;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
@@ -56,12 +58,55 @@ public class HelloController {
 
 	@Autowired
 	CartService cs;
+	
+	@Autowired
+	JavaMailSender mail;
 
 	@RequestMapping("/")
 	public String main123() {
 		urs.generateUserRoles();
 		return "index";
 	}
+	
+	@RequestMapping("/emailconfrm")
+	public String emailconfirm( HttpServletRequest req , HttpServletResponse resp ) {
+
+		String uemail = req.getParameter("email");
+		String subject = req.getParameter("subject");
+		String msg = req.getParameter("message");
+		
+		System.out.println( uemail );
+		System.out.println( subject );
+		System.out.println( msg );
+
+		SimpleMailMessage email = new SimpleMailMessage();
+		
+		email.setTo(uemail);
+		email.setSubject(uemail+":"+subject);
+		email.setText(msg);
+		
+		
+		
+		email.setTo(uemail);
+		email.setSubject("Welcome to Krystal Watches");
+		email.setText(" Thanks for Contacting Us \n We will get back to you soon \n\n Regards, \n The Krystal Watches Team");
+		
+		
+		try
+		{
+			mail.send(email);
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+		return "emailconfrm";
+	}
+	
+
+	
+	
 
 	@RequestMapping("/index")
 	public ModelAndView index() {
@@ -78,7 +123,7 @@ public class HelloController {
 
 	}
 
-	/* For Extraxting all the data from the Database and show on PRODUCT page */
+	/* For Extracting all the data from the Database and show on PRODUCT page */
 	@RequestMapping("/product")
 	public ModelAndView abc() {
 

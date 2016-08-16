@@ -10,11 +10,12 @@
 <c:import url="head-meta.jsp" />
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Contact Us</title>
 </head>
 <body>
 	<c:import url="head.jsp" />
-
+<br>
+<br><br><br>
 	<div class="container">
 		<div class="box2 ">
 			<div class="col-md-6 col-sm-6">
@@ -34,28 +35,31 @@
 					</h3>
 					<div class="box-content">
 						<div>
-							<form>
+							<form action="emailconfrm" method="post">
 								<br style="clear: both">
 
 								<h3 style="margin-bottom: 40px; text-align: center;">Contact
 									Form</h3>
 								<div class="form-group">
-									<input type="name" class="form-control" id="name" name="name"
-										placeholder="What Can we call you" required>
-								</div>
-								<div class="form-group">
 									<input type="email" class="form-control" id="email"
 										name="email" placeholder="Email" required>
 								</div>
 
+							<div class="form-group">
+									<input type="Subject" class="form-control" id="Subject" name="subject"
+										placeholder="Subject" required>
+								</div>
+								
+
 								<div class="form-group">
-									<textarea class="form-control" type="textarea" id="message"
+									<textarea class="form-control" type="textarea" id="message" name="message"
 										placeholder="Message" maxlength="140" rows="7"></textarea>
 
 								</div>
 
-								<button type="button" id="submit" name="submit"
-									class="btn btn-success pull-center">Submit Form</button>
+								<input type="submit" id="submit" name="submit"
+									class="btn btn-success text-center" value="Send Message">
+								
 							</form>
 						</div>
 					</div>
@@ -68,9 +72,14 @@
 
 
 
+<br>
+<br>
 
+<br>
+<br>
+<br>
 
-
+<br>
 
 
 

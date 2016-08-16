@@ -53,44 +53,63 @@
 				</tr>
 				<tr>
 					<td>Username:</td>
-					<td><form:input path="Username" /></td>
-					<td class="alert alert-danger"><form:errors path="Username" /></td>
+					<td><form:input type="" class="btn btn-lg" path="Username" />
+						<label class="text text-danger"><form:errors
+								path="username" /></label></td>
+
 				</tr>
 				<tr>
 					<td>Password:</td>
-					<td><form:password path="Password" /></td>
-					<td class="alert alert-danger"><form:errors path="Password" /></td>
+					<td><form:input type="password" class="btn btn-lg"
+							path="Password" />
+					<label class="text text-danger">
+					<form:errors path="password" /></td>
+					</td>
+
 				</tr>
 
 
 				<tr>
 					<td>Confirm Password:</td>
-					<td><form:input path="CPassword" /></td>
+					<td><form:input type="password" class="btn btn-lg"
+							path="cPassword" /></td>
 
 				</tr>
 				<tr>
 					<td>E-mail:</td>
-					<td><form:input path="Email" /></td>
-					<td class="alert alert-danger"><form:errors path="Email" /></td>
+					<td><form:input path="Email" class="btn btn-lg" type="" /><label class="text text-danger"><form:errors path="email" /></td>
+
+
+
 
 				</tr>
 
 				<tr>
 					<td>Contact No:</td>
-					<td><form:input path="Phone" /></td>
-					<td class="alert alert-danger"><form:errors path="Phone" /></td>
+					<td>
+					<form:input path="Phone" class="btn btn-lg" type="" />
+						<label class="text text-danger"><form:errors path="phone" /></td>
+				
+					
+					
+					</td>
+					
 				</tr>
 
 
 
 				<tr>
 					<td>Address</td>
-					<td><form:input path="address" /></td>
-					<td class="alert alert-danger"><form:errors path="address" /></td>
+					<td>
+					<form:input path="address" class="btn btn-lg" type="" />
+						<label class="text text-danger"><form:errors path="address" /></td>
+				
+					</td>
+					
 				</tr>
 				<tr>
 					<td colspan="2" align="center"><input type="submit"
-						value="Save" /></td>
+						value="Sign Up" class="btn btn-success" /></td>
 				</tr>
 			</table>
 		</form:form>

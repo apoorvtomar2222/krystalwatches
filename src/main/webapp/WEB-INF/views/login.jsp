@@ -51,12 +51,12 @@
 				</tr>
 				<tr>
 					<td>Username:</td>
-					<td><input type="text" name="Username" path="Username"></td>
+					<td><input type="" name="Username" ></td>
 				</tr>
 
 				<tr>
 					<td>Password:</td>
-					<td><input type="password" name="Password" path="Password"></td>
+					<td><input type="password" name="Password" ></td>
 				</tr>
 
 
@@ -65,7 +65,7 @@
 					value="${_csrf.token}" />
 				<tr>
 					<td colspan="2" align="center"><input type="submit"
-						value="Save" /></td>
+						class="btn btn-success" value="Login" /></td>
 				</tr>
 			</table>
 		</form>

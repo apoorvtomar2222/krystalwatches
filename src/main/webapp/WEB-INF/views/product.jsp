@@ -1,12 +1,13 @@
+<%@page import="org.springframework.security.core.context.SecurityContextHolder"%>
+<%@page import="org.springframework.security.core.Authentication"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Product</title>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<title>Bootstrap Example</title>
 
 
 <c:import url="head-meta.jsp" />
@@ -40,10 +41,23 @@
 	<br>
 	<div class="container">
 
-		<a href="addproduct"
+
+					<%
+						if (request.isUserInRole("ADMIN"))
+						{
+							%>
+							<a href="addproduct"
 			class="button4 btn-center btn-success btn pull-right" align="right">Add
-			Product</a> <input type="text" placeholder="Search Product"
-			ng-model="searchProduct.ProductName" /> <input type="hidden"
+			Product</a>
+							<%							
+						}
+						%>
+
+			
+			
+			
+			<input type="text" placeholder="Search Product"
+			ng-model="search" /> <input type="hidden"
 			value="{{ x.Product_Id }}" /> 
 			<br>
 		<br>
@@ -62,7 +76,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="x in data | filter:searchProduct ">
+				<tr ng-repeat="x in data | filter:search ">
 					<input type="hidden" value="{{ x.Product_Id }}" />
 
 					<td>{{x.ProductName}}</td>
@@ -70,6 +84,7 @@
 					<td>{{x.ProductQty}}</td>
 					<td><img
 						ng-src="${pageContext.request.contextPath}/{{ x.flag }}"
+
 						height=" 150px" width="200px"></td>
 
 					<td>
@@ -79,17 +94,26 @@
 						</div>
 
 
-						<div class="btn1">
-							<a
-								href="${pageContext.request.contextPath}/update/{{x.ProductID}}"
-								class="button3">UPDATE</a>
-						</div>
+						<%
+						if (request.isUserInRole("ADMIN"))
+						{
+							%>
+							<div class="btn1">
+								<a
+									href="${pageContext.request.contextPath}/update/{{x.ProductID}}"
+									class="button3">UPDATE</a>
+							</div>
+	
+							<div class="btn1">
+								<a
+									href="${pageContext.request.contextPath}/delete/{{x.ProductID}}"
+									class="button3">DELETE</a>
+							</div>
+							<%							
+						}
+						%>
 
-						<div class="btn1">
-							<a
-								href="${pageContext.request.contextPath}/delete/{{x.ProductID}}"
-								class="button3">DELETE</a>
-						</div>
+						
 					</td>
 			</tbody>
 
