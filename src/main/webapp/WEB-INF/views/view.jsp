@@ -50,17 +50,21 @@
 			</tr>
 
 
-			<%
-				if (request.isUserInRole("USER")) {
-			%>
-			<form action="${pageContext.request.contextPath}/addToCart"
+
+<%
+     if (!request.isUserInRole("ADMIN")) {
+    	 
+        
+        %>
+        
+        	<form action="${pageContext.request.contextPath}/addToCart"
 				method="post">
 
 				<input type="hidden" value="${ProductId}" name="pid" />
 				<tr>
 					<td>Qty</td>
-					<td><input type="number" min="1" max="10" name="pqty"
-						class="form form-input" /></td>
+					<td><input type="number" value="1 " min="1" max="10"
+						name="pqty" class="form form-input" /></td>
 				</tr>
 				<tr>
 					<td></td>
@@ -68,13 +72,12 @@
 						class="btn btn-success" /></td>
 				</tr>
 			</form>
-			</div>
-			<%
-				}
-			%>
+<%
 
+}
+%>        
 
-
+   
 		</table>
 
 	</div>

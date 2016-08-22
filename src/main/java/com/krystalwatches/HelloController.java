@@ -68,7 +68,7 @@ public class HelloController {
 		return "index";
 	}
 	
-	@RequestMapping("/emailconfrm")
+	@RequestMapping(value="/emailconfrm" , method = RequestMethod.POST)
 	public String emailconfirm( HttpServletRequest req , HttpServletResponse resp ) {
 
 		String uemail = req.getParameter("email");
@@ -81,13 +81,29 @@ public class HelloController {
 
 		SimpleMailMessage email = new SimpleMailMessage();
 		
-		email.setTo(uemail);
+		email.setTo("krystalwatches@gmail.com");
 		email.setSubject(uemail+":"+subject);
 		email.setText(msg);
+
+		try
+		{
+			mail.send(email);
+			
+			System.out.println("Mail 1 Sent");
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+
+		String uemail1 = req.getParameter("email");
+
+
+		System.out.println( uemail1 );
 		
 		
-		
-		email.setTo(uemail);
+		email.setTo(uemail1);
 		email.setSubject("Welcome to Krystal Watches");
 		email.setText(" Thanks for Contacting Us \n We will get back to you soon \n\n Regards, \n The Krystal Watches Team");
 		
@@ -95,17 +111,17 @@ public class HelloController {
 		try
 		{
 			mail.send(email);
+			
+			System.out.println("Mail 2 Sent");
 		}
 		catch(Exception e)
 		{
 			e.printStackTrace();
 		}
 		
+		
 		return "emailconfrm";
 	}
-	
-
-	
 	
 
 	@RequestMapping("/index")
@@ -540,4 +556,100 @@ public class HelloController {
 
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	
+	/*For admin to see the user base*/
+	
+	@RequestMapping("/userbase")
+	public ModelAndView abc1() {
+
+		ModelAndView mav = new ModelAndView("userbase");
+
+		JSONArray jarr = new JSONArray();
+
+		List<User> list = as.getAllUsers();
+
+		for (User u : list) {
+			JSONObject jobj1 = new JSONObject();
+
+			jobj1.put("Email",u.getEmail() );
+			jobj1.put("Username", u.getUsername());
+			jobj1.put("Phone", u.getPhone());
+			jobj1.put("Password", u.getPassword());
+			jobj1.put("Role", u.getRole());
+			
+			
+			jarr.add(jobj1);
+		}
+
+		mav.addObject("data1", jarr.toJSONString());
+
+		return mav;
+
+	}
+
+	/* UPDATE User role*/
+/*	@RequestMapping(value = "/update/{Username}")
+	public ModelAndView update(@PathVariable("Username") int prod) {
+		ModelAndView mav = new ModelAndView("update");
+
+		System.out.println("prod");
+
+		Product p = as.getUser(prodid);
+
+		mav.addObject("newproduct2", p);
+
+		return mav;
+
+	}
+
+	
+	
+	
+	@RequestMapping("userbase")
+	public ModelAndView userbase() {
+		ModelAndView mav = new ModelAndView("userbase");
+
+		List<User> list = as.getAllUsers();
+
+		JSONArray jarr = new JSONArray();
+
+		String user = "";
+
+		for (User u : list) {
+
+			if (u.getUsername().equals(user)) {
+				JSONObject jobj = new JSONObject();
+
+
+				jobj.put("Email",u.getEmail() );
+				jobj.put("Username", u.getUsername());
+				jobj.put("Phone", u.getPhone());
+				jobj.put("Password", u.getPassword());
+				
+			
+User p = as.getUser(u.getUsername());
+				
+				jobj.put("Role", p.getRole());
+
+				jarr.add(jobj);
+			}
+
+		}
+
+		System.out.println(jarr);
+
+		mav.addObject("data", jarr.toJSONString());
+
+		return mav;
+
+	}
+
+*/
 }

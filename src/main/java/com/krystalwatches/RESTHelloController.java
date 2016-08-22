@@ -30,7 +30,7 @@ import com.krystalwatches.UserModel.UserService;
 
 import com.krystalwatches.UserRoleModel.UserRoleService;
 
-@CrossOrigin(origins = "http://localhost8080", maxAge = 3600)
+@CrossOrigin(origins = "http://localhost:8080", maxAge = 3600)
 @RestController
 public class RESTHelloController {
 

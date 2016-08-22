@@ -20,6 +20,15 @@ public class Cart implements Serializable
 	private String BillingAddress;
 	private String ProductID;
 	private String UserName;
+	private String ModeofPayement;
+
+	public String getModeofPayement() {
+		return ModeofPayement;
+	}
+
+	public void setModeofPayement(String modeofPayement) {
+		ModeofPayement = modeofPayement;
+	}
 
 	public String getProductID() {
 		return ProductID;

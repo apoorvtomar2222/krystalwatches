@@ -51,16 +51,13 @@
 				</tr>
 
 
-				<tr>
-					<td colspan="2"><input type="submit" value="Save" /></td>
-				</tr>
-
+		
 
 				<tr>
 
-					<td><form:label path="productImage" for="productImage">Image:</form:label>
-
-
+					<td ><form:label path="productImage" for="productImage">Image:</form:label>
+</td>
+<td>
 						<label class="form-control"><span id="file_display1">Choose
 								Image</span><span style="position: relative;"> <form:input
 									path="productFile" onchange="changeFileDisplay1();" type="file"
@@ -73,9 +70,18 @@
 											;
 										}
 									</script></td>
+	
+	
 				</tr>
+					
+					
+							<tr>
+					<td colspan="2"><input type="submit" class="btn btn-success " value="Save" /></td>
+				</tr>
+			
 
 			</table>
+			
 		</form:form>
 
 	</div>

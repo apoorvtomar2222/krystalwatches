@@ -37,10 +37,8 @@
 															return response.data;
 														},
 														function(errResponse) {
-															console
-																	.error('Error while sending data');
-															return $q
-																	.reject(errResponse);
+															console.error('Error while sending data');
+															return $q.reject(errResponse);
 														});
 									},
 									fetchAllItems : function(item) {
@@ -52,10 +50,8 @@
 															return response.data;
 														},
 														function(errResponse) {
-															console
-																	.error('Error while sending data');
-															return $q
-																	.reject(errResponse);
+															console.error('Error while sending data');
+															return $q.reject(errResponse);
 														});
 									}
 								};
@@ -112,6 +108,11 @@
 	<br>
 	<br>
 	<div class="container">
+		<a href="${pageContext.request.contextPath}/product"
+			class="btn btn-primary btn-lg btn pull-right">Back To product<span
+			class="glyphicon glyphicon-chevron-right"></span></a>
+
+
 		<a href="${flowExecutionUrl}&_eventId=goToCheckout"
 			class="btn btn-primary btn-lg btn pull-right">Check Out<span
 			class="glyphicon glyphicon-chevron-right"></span></a>

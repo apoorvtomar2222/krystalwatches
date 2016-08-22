@@ -57,7 +57,7 @@
 
 								</div>
 
-								<input type="submit" id="submit" name="submit"
+								<input type="submit" id="submit"
 									class="btn btn-success text-center" value="Send Message">
 								
 							</form>
