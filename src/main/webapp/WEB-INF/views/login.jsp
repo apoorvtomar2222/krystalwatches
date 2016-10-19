@@ -13,7 +13,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
-<title>signup</title>
+<title>Login</title>
 <c:import url="head-meta.jsp" />
 </head>
 
@@ -58,8 +58,15 @@
 					<td>Password:</td>
 					<td><input type="password" name="Password" ></td>
 				</tr>
-
-
+			
+				<tr>
+				
+					<td colspan=2>
+					<center>
+					<a href="${pageContext.request.contextPath}/enteremailid" >Forgot your password</a>
+					</center>
+					</td>
+				</tr>
 
 				<input type="hidden" name="${_csrf.parameterName}"
 					value="${_csrf.token}" />

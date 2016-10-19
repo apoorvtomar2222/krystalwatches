@@ -17,33 +17,27 @@
 	'use strict';
 	var myApp = angular.module('myApp', []);
 
-	myApp
-			.factory(
+	myApp.factory(
 					'UserService',
-					[
-							'$http',
-							'$q',
-							function($http, $q) {
+					['$http','$q',function($http, $q) {
 
 								return {
 
 									deleteFromCart : function(item) {
-										return $http
-												.post(
-														'http://localhost:8080/krystalwatches/flows/deleteFromCart/',
-														item)
+										return $http.post('http://localhost:8080/krystalwatches/flows/deleteFromCart/',item)
 												.then(
-														function(response) {
+														function(response) 
+														{
 															return response.data;
 														},
-														function(errResponse) {
+														function(errResponse)
+														{
 															console.error('Error while sending data');
 															return $q.reject(errResponse);
 														});
 									},
 									fetchAllItems : function(item) {
-										return $http
-												.post(
+										return $http.post(
 														'http://localhost:8080/krystalwatches/flows/fetchAllItems/')
 												.then(
 														function(response) {
@@ -60,12 +54,10 @@
 
 	//////////////////////////////////////////////////////////////////////////////////////////
 
-	myApp.controller("abc", [
-			'$scope',
-			'UserService',
-			function($scope, $UserService) {
-
-				$scope.deleteFromCart = function(cartId) {
+	myApp.controller("abc", ['$scope','UserService',
+			function($scope, $UserService) 
+			{
+					$scope.deleteFromCart = function(cartId) {
 					$UserService.deleteFromCart(cartId).then(
 							function(response) {
 								try {
@@ -109,12 +101,12 @@
 	<br>
 	<div class="container">
 		<a href="${pageContext.request.contextPath}/product"
-			class="btn btn-primary btn-lg btn pull-right">Back To product<span
-			class="glyphicon glyphicon-chevron-right"></span></a>
+			class="btn btn-danger btn-lg btn pull-left"><span
+			class="glyphicon glyphicon-chevron-left"></span>Back To product</a>
 
 
 		<a href="${flowExecutionUrl}&_eventId=goToCheckout"
-			class="btn btn-primary btn-lg btn pull-right">Check Out<span
+			class="btn btn-success btn-lg btn pull-right">Check Out<span
 			class="glyphicon glyphicon-chevron-right"></span></a>
 
 	<br>

@@ -2,6 +2,7 @@
 <%@page import="org.springframework.security.core.Authentication"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ page isELIgnored="false" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -21,7 +22,7 @@
 		var myApp = angular.module('myApp', []);
 
 		myApp.controller("abc", function($scope) {
-			$scope.data = ${data};
+			$scope.data = ${Categories};
 			$scope.search = '${param.item}';
 		})
 	};
@@ -43,82 +44,35 @@
 	<div class="container">
 
 
-					<%
-						if (request.isUserInRole("ADMIN"))
-						{
-							%>
-							<a href="addproduct"
+							<a href="addcategory"
 			class="button4 btn-center btn-success btn pull-right" align="right">Add
-			Product</a>
-							<%							
-						}
-						%>
-
+			Category</a>
+					
 			
-			
-			
-			<input type="text" placeholder="Search Product"
-			ng-model="search" /> <input type="hidden"
-			value="{{ x.Product_Id }}" /> 
 			<br>
 		<br>
 		<table class="table ">
 
-			<thead>
-				<tr>
-
-
-					<th>Product NAme</th>
-					<th>Price</th>
-					<th>Quantity</th>
-					<th>Category</th>
-					<th>Rating</th>
-					<th>Image</th>
-					<th></th>
-
-				</tr>
-			</thead>
 			<tbody>
 				<tr ng-repeat="x in data | filter:search ">
 					<input type="hidden" value="{{ x.Product_Id }}" />
 
-					<td>{{x.ProductName}}</td>
-					<td>{{x.ProductPrice}}</td>
-					<td>{{x.ProductQty}}</td>
-					<td>{{x.ProductCategory}}</td>
+<td>
+					<label>Category Name :&nbsp;{{x.CategoryName}}</label>
 					
-					<td>{{x.CurrentCount}}</td>
 										
-					
-					<td><img
-						ng-src="${pageContext.request.contextPath}/{{ x.flag }}"
-
-						height=" 150px" width="200px"></td>
-
-					<td>
-						<div class="btn1">
-							<a href="${pageContext.request.contextPath}/view/{{x.ProductID}}"
-								class="button3 ">VIEW</a>
-						</div>
-						<%
-						if (request.isUserInRole("ADMIN"))
-						{
-							%>
 							<div class="btn1">
 								<a
-									href="${pageContext.request.contextPath}/update/{{x.ProductID}}"
+									href="updatecategory/{{x.CategoryId}}"
 									class="button3">UPDATE</a>
 							</div>
 	
 							<div class="btn1">
 								<a
-									href="${pageContext.request.contextPath}/delete/{{x.ProductID}}"
+									href="DeleteCategoryFromDB/{{x.CategoryId}}"
 									class="button3">DELETE</a>
 							</div>
-							<%							
-						}
-						%>
-
+					
 						
 					</td>
 			</tbody>

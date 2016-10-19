@@ -107,36 +107,13 @@
 	<textarea rows="5" placeholder="BILLING ADDRESS" class="form-control" style="resize: none;" ng-model="billingAddress"></textarea>
 	</div>
 	<br><br>
-	<div><input type="button" value="Update" class="btn btn-success" ng-click="UpdateAddresses()" ng-disabled="shippingAddress=='' || billingAddress==''"></div>
-	<br><br>
-
-	<div>
-	<label>Mode of Payment</label><br><br>
-
-<div class="checkbox">
-  <label><input type="checkbox" value="">Cash on Delivery</label>
-</div>
-<div class="checkbox">
-  <label><input type="checkbox" value="">Net Banking</label>
-</div>
-<div class="checkbox">
-  <label><input type="checkbox" value="" >Debit Card</label>
-</div>
-
-	</div>
-	<br><br>
-	<div><input type="button" value="Update" class="btn btn-success" ng-click="UpdateAddresses()" ng-disabled="shippingAddress=='' || billingAddress==''"></div>
-	<br><br>
+	<div><input type="button" value="Update" class="btn btn-success" ng-click="UpdateAddresses()" ng-disabled="shippingAddress=='' || billingAddress==''">
+	</div><br>
+	<br>
+	 <label class="alert alert-success" style="position: absolute; top: 490px; left: 530px; " ng-show="updated=='updated'">Updated</label>
 	
 
 
-	<div ng-show="updated == 'updated'"><label class="alert alert-success">Updated Successfully</label></div>
-	<br><br>
-	
-	
-	
-	
-</div>
 </div>
 </body>
 </html>

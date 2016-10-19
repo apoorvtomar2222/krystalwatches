@@ -43,6 +43,7 @@
 				<value>com.krystalwatches.UserModel</value>
 				<value>com.krystalwatches.UserRoleModel</value>
 				<value>com.krystalwatches.CartModel</value>
+				<value>com.krystalwatches.Category</value>
 			</list>
 		</property>
 	</bean>

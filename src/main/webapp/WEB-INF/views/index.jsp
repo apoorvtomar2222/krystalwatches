@@ -96,14 +96,17 @@
 		<div class="display img img-responsive">
 
 			<div>
+			
 				<div class="cir col-md-4">
-
+					<a href="${pageContext.request.contextPath}/product?item=gents	">
 					<img src="resources/images/formal.jpg" class=" img-circle "
 						alt="Cinque Terre" width="100%" height="236">
 					<h3 class="kd">Mens Stylise watch</h3>
 
 				</div>
 				<div class="cir col-md-4">
+					<a href="${pageContext.request.contextPath}/product?item=ladies">
+					
 					<img src="resources/images/women.jpg" class=" img-circle "
 						alt="Cinque Terre" width="100%" height="236">
 					<h3>Women Antique Watches</h3>
@@ -112,6 +115,9 @@
 
 
 				<div class="cir col-md-4">
+					<a href="${pageContext.request.contextPath}/product?item=sports">
+					
+					
 					<img src="resources/images/sports.jpg" class=" img-circle"
 						alt="Cinque Terre" width="100%" height="236"> <br>
 					<h3>Sporty,Water Proof watches</h3>

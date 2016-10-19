@@ -37,7 +37,21 @@
 				</tr>
 				<tr>
 					<td>Category :</td>
-					<td><form:input path="productCategory" /></td>
+					<td>
+					<form:select path="productCategory" class="form-control">
+                    		
+                    		<c:if test="${not empty AllCategories}">
+                    		<c:forEach var="item" items="${AllCategories}">
+                    			<form:option value="${item.categoryName}" />
+                    		</c:forEach>
+                    		</c:if>
+                    		
+                    		<c:if test="${empty AllCategories}">
+                    		<form:option value="None" />
+                    		</c:if>
+                    		
+                    	</form:select>
+                    	</td>
 				</tr>
 
 				<tr>

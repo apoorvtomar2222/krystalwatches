@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -28,10 +29,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.krystalwatches.CartModel.Cart;
 import com.krystalwatches.CartModel.CartService;
+import com.krystalwatches.Category.Category;
+import com.krystalwatches.Category.CategoryService;
 import com.krystalwatches.ProductModel.Product;
 
 import com.krystalwatches.ProductModel.ProductService;
@@ -40,6 +45,14 @@ import com.krystalwatches.UserModel.UserService;
 
 import com.krystalwatches.UserRoleModel.UserRole;
 import com.krystalwatches.UserRoleModel.UserRoleService;
+
+
+import com.twilio.sdk.TwilioRestClient;
+import com.twilio.sdk.TwilioRestException;
+import com.twilio.sdk.resource.factory.MessageFactory;
+import com.twilio.sdk.resource.instance.Message;
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
 
 @Controller
 public class HelloController {
@@ -60,13 +73,38 @@ public class HelloController {
 	CartService cs;
 	
 	@Autowired
+	CategoryService cgs;
+	
+	@Autowired
 	JavaMailSender mail;
+	
+	@Autowired
+	JavaMailSender mail2;
 
 	@RequestMapping("/")
 	public String main123() {
 		urs.generateUserRoles();
 		return "index";
 	}
+	
+	/*@RequestMapping(value="/emailconfrm1" , method = RequestMethod.POST)
+	public String emailconfirm1( HttpServletRequest req , HttpServletResponse resp )
+	{
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	*/
+	
+	
+	
+	
+	
 	
 	@RequestMapping(value="/emailconfrm" , method = RequestMethod.POST)
 	public String emailconfirm( HttpServletRequest req , HttpServletResponse resp ) {
@@ -156,8 +194,10 @@ public class HelloController {
 			jobj.put("ProductName", p.getProductName());
 			jobj.put("ProductPrice", p.getProductPrice());
 			jobj.put("ProductQty", p.getProductQty());
+			jobj.put("ProductCategory", p.getProductCategory());
 			jobj.put("flag", p.getProductImage());
-
+			jobj.put("ProductCount",p.getCurrentCount());
+			jobj.put("CurrentCount", p.getCurrentCount());
 			jarr.add(jobj);
 		}
 
@@ -188,10 +228,13 @@ public class HelloController {
 	public ModelAndView addproduct() {
 		ModelAndView mav = new ModelAndView("addproduct");
 		mav.addObject("newproduct", new Product());
+		mav.addObject("AllCategories",cgs.getAllCategories());
 
 		return mav;
 	}
 
+	
+	
 	@RequestMapping(value = "/view/{productID}")
 	public ModelAndView addproduct1(@PathVariable("productID") int prodid) {
 		ModelAndView mav = new ModelAndView("view");
@@ -209,6 +252,49 @@ public class HelloController {
 			mav.addObject("ProductQty", p.getProductQty());
 			mav.addObject("ProductImg", p.getProductImage());
 			mav.addObject("ProductId", p.getProductId());
+			mav.addObject("currentRating", p.getCurrentRating());
+		}
+
+		return mav;
+
+	}
+	
+	@RequestMapping(value = "/submitRating/{productID}")
+	public ModelAndView submitRating(@PathVariable("productID") int prodid , HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView("view");
+
+		System.out.println(prodid);
+		
+
+		int rating = Integer.parseInt(request.getParameter("rating"));
+		
+		System.out.println(rating);
+		
+		Product p = ps.getProduct(prodid);
+		
+		if (p != null) {
+
+			long curravg = p.getCurrentCount() * p.getCurrentRating();
+			
+			curravg = (curravg + rating)/(p.getCurrentCount()+1);
+			
+			curravg = (curravg>5)?5:curravg;
+			
+			p.setCurrentRating(curravg);
+			p.setCurrentCount(p.getCurrentCount()+1);
+			
+			ps.updateProduct(p);
+			
+			mav.addObject("ProductName", p.getProductName());
+			mav.addObject("ProductDescription", p.getProductDescription());
+			mav.addObject("ProductCategory", p.getProductCategory());
+			mav.addObject("ProductPrice", p.getProductPrice());
+			mav.addObject("ProductQty", p.getProductQty());
+			mav.addObject("ProductImg", p.getProductImage());
+			mav.addObject("ProductId", p.getProductId());
+			mav.addObject("currentRating", p.getCurrentRating());
+			
+			
 		}
 
 		return mav;
@@ -279,6 +365,7 @@ public class HelloController {
 
 		return "redirect:product";
 	}
+
 
 	/* UPDATE */
 
@@ -411,7 +498,8 @@ public class HelloController {
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		if (auth != null) {
+		if (auth != null) 
+		{
 
 			System.out.println("In LogOut");
 			new SecurityContextLogoutHandler().logout(request, response, auth);
@@ -652,4 +740,205 @@ User p = as.getUser(u.getUsername());
 	}
 
 */
+	
+	
+	
+	
+	
+
+	@RequestMapping("/enteremailid")
+	public String forgtpasswrd(@ModelAttribute("forgot") User p)
+	{
+	
+		return "enteremailid";
+	}
+	
+	
+	@RequestMapping(value="/emailconfirm1" , method = RequestMethod.POST)
+	public ModelAndView emailconfirm1(@ModelAttribute("forgot") User p , HttpServletRequest req , HttpServletResponse resp)
+	
+	{
+		ModelAndView mav = new ModelAndView("forgotpassconfrm");
+		
+		List<User> list = as.getAllUsers();
+		for (User u : list) {
+			if (u.getEmail().equals(p.getEmail())) 
+			{
+				System.out.println(p.getEmail());
+				
+				System.out.println(u.getPassword());
+				mav.addObject("Password",u.getPassword());
+				
+			
+			String uemail = req.getParameter("email");
+			
+			System.out.println( uemail );
+			SimpleMailMessage email0 = new SimpleMailMessage();
+			
+			email0.setFrom("krystalwatches@gmail.com");
+			email0.setTo(uemail);
+			email0.setText("Your Password is   "+ u.getPassword());
+			
+			
+			try
+			{
+				mail2.send(email0);
+				
+				System.out.println("Mail 3 Sent");
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+			}
+			}
+
+			
+			
+			
+		}
+		return mav;
+
+	}
+	
+
+
+										/*Sending Sms to customers*/
+
+
+
+// Find your Account Sid and Token at twilio.com/user/account
+public static final String ACCOUNT_SID = "AC6493b692a3036a8378bfe916cbef6cbe";
+public static final String AUTH_TOKEN = "d67eb8bd1b5468344f5256ee0523d03f";
+public static final String TWILIO_NUMBER = "+12013669760";
+
+
+ 
+    @RequestMapping("/greeting")
+    public String greeting()
+    {
+   
+    
+ 
+        try {
+            TwilioRestClient client = new TwilioRestClient(ACCOUNT_SID, AUTH_TOKEN);
+     
+            // Build a filter for the MessageList
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("Body", "Hello, World!"));
+            params.add(new BasicNameValuePair("To", "+919899948270")); //Add real number here
+            params.add(new BasicNameValuePair("From", TWILIO_NUMBER));
+     
+            MessageFactory messageFactory = client.getAccount().getMessageFactory();
+            Message message = messageFactory.create(params);
+            System.out.println(message.getSid());
+        } 
+        catch (TwilioRestException e) 
+        {
+            System.out.println(e.getErrorMessage());
+        }
+    
+
+  return "greeting";
+	
+    }
+
+    @RequestMapping("/categories")
+	public ModelAndView categories() {
+		ModelAndView mav = new ModelAndView("categories");
+		
+		JSONArray jarr = new JSONArray();
+		
+		List<Category> list = cgs.getAllCategories();
+		
+		for( Category c:list )
+		{
+			JSONObject jobj = new JSONObject();
+			
+			jobj.put("CategoryId", c.getId() );
+			jobj.put("CategoryName", c.getCategoryName());
+			
+			jarr.add(jobj);
+		}
+		
+		mav.addObject("Categories", jarr.toJSONString());
+		
+		return mav;
+	}
+	
+	@RequestMapping("/addcategory")
+	public ModelAndView addcategory() {
+		
+		ModelAndView mav = new ModelAndView("addcategory");
+		
+		mav.addObject("Category", new Category());
+		
+		return mav;
+	}
+	
+	@RequestMapping("/AddCategoryToDB")
+	public String AddCategoryToDB( @ModelAttribute("Category") Category c ) {
+		
+		cgs.insert(c);
+		
+		return "redirect:/categories";
+	}
+	
+	@RequestMapping("/DeleteCategoryFromDB/{cid}")
+	public String DeleteCategoryFromDB( @PathVariable("cid") int cid ) {
+		
+		Category c = cgs.getCategory(cid);
+		
+		cgs.delete(cid);
+		
+		List<Product> list = ps.getAllProducts();
+		
+		for( Product p : list )
+		{
+			if( p.getProductCategory().equals(c.getCategoryName()) )
+			{
+				p.setProductCategory("-");
+				ps.updateProduct(p);;
+			}
+		}
+		
+		return "redirect:/categories";
+	}
+	
+	@RequestMapping("/updatecategory/{cid}")
+	public ModelAndView updatecategory( @PathVariable("cid") int cid ) {
+		
+		ModelAndView mav = new ModelAndView("updatecategory");
+		
+		Category c = cgs.getCategory(cid);
+		
+		mav.addObject("Category", c);
+		
+		return mav;
+	}
+	
+	@RequestMapping("/UpdateCategoryToDB")
+	public String UpdateCategoryToDB( @ModelAttribute("Category") Category c ) {
+		
+		Category c1 = cgs.getCategory(c.getId());
+		
+		List<Product> list = ps.getAllProducts();
+		
+		for( Product p : list )
+		{
+			if( p.getProductCategory().equals(c1.getCategoryName()) )
+			{
+				p.setProductCategory(c.getCategoryName());
+				ps.updateProduct(p);
+			}
+		}
+		
+		cgs.update(c);
+		
+		return "redirect:/categories";
+	}
+
+    
+    
+    
 }
+

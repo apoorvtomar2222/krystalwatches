@@ -48,8 +48,7 @@
 		<form:form action="insertuser" method="post" modelAttribute="newuser">
 			<table>
 				<tr>
-					<td colspan="2" align="center"><h2>Spring MVC Form Demo -
-							Registration</h2></td>
+					<td colspan="2" align="center"><h2>Sign Up</h2></td>
 				</tr>
 				<tr>
 					<td>Username:</td>

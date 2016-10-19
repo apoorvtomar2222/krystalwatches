@@ -7,7 +7,7 @@ import javax.persistence.Id;
 @Entity
 public class UserRole {
 	
-	@Id @GeneratedValue(strategy=GenerationType.AUTO)
+	@Id @GeneratedValue(strategy=GenerationType.SEQUENCE)
 	private Long ID;
 	
 

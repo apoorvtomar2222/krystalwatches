@@ -14,7 +14,69 @@
 <c:import url="head-meta.jsp" />
 
 </head>
-<body>
+	
+
+
+<script>
+function abc(arg) {
+    document.getElementById("userRating").value = arg;
+    
+    console.log( document.getElementById("userRating").value );
+}
+
+function setRating()
+{
+	var currRating = 0;
+
+	try
+	{
+		currRating = ${currentRating};
+	}
+	catch(e)
+	{
+		currRating = 0;
+	}
+	
+	/* switch(currRating)
+	{
+	case 1:
+		document.getElementById("rating-input-1-1").style.background="url('http://css-stars.com/wp-content/uploads/2013/12/stars.png') 0 0px";
+		break;
+		
+		
+	case 2:
+		document.getElementById("rating-input-1-1").style.background="url('http://css-stars.com/wp-content/uploads/2013/12/stars.png') 0 0px";
+		document.getElementById("rating-input-1-2").style.background="url('http://css-stars.com/wp-content/uploads/2013/12/stars.png') 0 0px";
+		break;
+		
+	case 3:
+		document.getElementById("rating-input-1-1").style.background="url('http://css-stars.com/wp-content/uploads/2013/12/stars.png') 0 0px";
+		document.getElementById("rating-input-1-2").style.background="url('http://css-stars.com/wp-content/uploads/2013/12/stars.png') 0 0px";
+		document.getElementById("rating-input-1-3").style.background="url('http://css-stars.com/wp-content/uploads/2013/12/stars.png') 0 0px";
+		
+		break;
+		
+			
+	} */
+	
+	/* alert($("#rating-input-1-1").css( "background-position"));
+	
+	$("#rating-input-1-1").css({ "background":"url('http://css-stars.com/wp-content/uploads/2013/12/stars.png') 0 0px" });
+	
+	alert($("#rating-input-1-1").css( "background-position")); */
+	
+	var ratingobj = new RatingObject().Constructor("myRating", "50" , "0" , "RatingArea" , "50", "0.95", "1", "0", "Editable", currRating);
+	
+	
+	
+	//document.getElementById("rating-input-1-2").style.background="url('http://css-stars.com/wp-content/uploads/2013/12/stars.png') 0 0px";
+	//document.getElementById("rating-input-1-3").style.background="url('http://css-stars.com/wp-content/uploads/2013/12/stars.png') 0 0px";
+	
+}
+
+</script>
+
+<body onload="setRating()">
 	<c:import url="head.jsp" />
 
 	<br>
@@ -35,6 +97,7 @@
 				<td>Product Name :</td>
 				<td>${ProductName}</td>
 			</tr>
+	
 			<tr>
 				<td>Description:</td>
 				<td>${ProductDescription}</td>
@@ -51,19 +114,57 @@
 
 
 
+
+<tr>
+<td>Rate the Product</td>
+<td>
+
+<!-- <div class="rating-wrapper">
+  <input type="radio" onclick="abc(1)" class="rating-input" id="rating-input-1-1" name="rating-input-1" />
+  <label for="rating-input-1-1" class="rating-star"></label>
+  
+  <input type="radio" onclick="abc(2)" class="rating-input" id="rating-input-1-2" name="rating-input-1" />
+  <label for="rating-input-1-2" class="rating-star"></label>
+  
+  <input type="radio" onclick="abc(3)" class="rating-input" id="rating-input-1-3" name="rating-input-1" />
+  <label for="rating-input-1-3" class="rating-star"></label>
+  
+  <input type="radio" onclick="abc(4)" class="rating-input" id="rating-input-1-4" name="rating-input-1" />
+  <label for="rating-input-1-4" class="rating-star"></label>
+  
+  <input type="radio" onclick="abc(5)" class="rating-input" id="rating-input-1-5" name="rating-input-1" />
+  <label for="rating-input-1-5" class="rating-star"></label>
+</div> -->
+
+
+<div id="RatingArea" style="margin: auto; width: 95%;"></div>
+
+
+<div>
+	<form action="${pageContext.request.contextPath}/submitRating/${ProductId}" method="post">
+		<input type="hidden" value="${ProductId}" name="pid" />
+		<input type="hidden" id="userRating" name="rating" />
+		<input type="submit" value="Add Rating" class="btn btn-info"/>
+	</form>
+</div>
+
+</td>
+ </tr>  
+
+
+			
 <%
      if (!request.isUserInRole("ADMIN")) {
     	 
         
         %>
         
-        	<form action="${pageContext.request.contextPath}/addToCart"
-				method="post">
+        	<form action="${pageContext.request.contextPath}/addToCart" method="post">
 
 				<input type="hidden" value="${ProductId}" name="pid" />
 				<tr>
 					<td>Qty</td>
-					<td><input type="number" value="1 " min="1" max="10"
+					<td><input type="number" value="1" min="1" max="10"
 						name="pqty" class="form form-input" /></td>
 				</tr>
 				<tr>
@@ -75,11 +176,14 @@
 <%
 
 }
-%>        
+%>
 
-   
 		</table>
+		
 
-	</div>
+
+</div>
+<br><br>
+<br><br>
 </body>
 </html>

@@ -9,6 +9,7 @@ public interface UserService
 	public void deleteUser(long p);
 	public void updateUser(User p);
 	public User getUser(String p);
+
     public List<User> getAllUsers();
 
     

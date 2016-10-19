@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Length;
@@ -24,7 +25,7 @@ public class User implements Serializable
 	private static final long serialVersionUID = 1L;
 
 	
-	@Id @GeneratedValue(strategy=GenerationType.AUTO)
+	@Id @GeneratedValue(strategy=GenerationType.SEQUENCE)
 	private Long ID;
 	
 	private String Email;
@@ -97,6 +98,7 @@ public class User implements Serializable
 
 	@NotEmpty(message="Password field is mandatory.")
 	@Size(min = 6, max = 15, message = "Your password must between 6 and 15 characters")
+	
 	public String getPassword() {
 		return Password;
 	}

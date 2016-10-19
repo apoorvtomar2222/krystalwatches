@@ -105,7 +105,6 @@
 	<br>
 	<br>
 
-	<h1>Page 3</h1>
 
 	<a href="${flowExecutionUrl}&_eventId=BackToConfirmDetails"
 		class="btn btn-danger btn pull-left"><span

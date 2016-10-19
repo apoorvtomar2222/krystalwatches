@@ -10,6 +10,8 @@
 <script
 	src="${pageContext.request.contextPath}/resources/references/js/jquery.min.js"></script>
 <script
+	src="${pageContext.request.contextPath}/resources/references/js/RatingObject.js"></script>
+<script
 	src="${pageContext.request.contextPath}/resources/references/js/bootstrap.min.js"></script>
 <script
 	src="${pageContext.request.contextPath}/resources/references/js/angular.min.js"></script>

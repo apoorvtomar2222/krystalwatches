@@ -44,6 +44,11 @@
 					<td>Category :</td>
 					<td><form:input path="productCategory" /></td>
 				</tr>
+				
+				<tr>
+					<td>Price :</td>
+					<td><form:input path="productPrice" /></td>
+				</tr>
 
 				<tr>
 					<td>Quantity :</td>

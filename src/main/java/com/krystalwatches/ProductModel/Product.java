@@ -20,7 +20,7 @@ public class Product implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private long ProductId;
 
 	private String ProductName;
@@ -34,6 +34,27 @@ public class Product implements Serializable {
 	private String ProductQty;
 
 	private String ProductImage;
+	
+	private long CurrentRating=0;
+	
+	public long getCurrentRating() {
+		return CurrentRating;
+	}
+
+	public void setCurrentRating(long currentRating) {
+		CurrentRating = currentRating;
+	}
+
+	public long getCurrentCount() {
+		return CurrentCount;
+	}
+
+	public void setCurrentCount(long currentCount) {
+		CurrentCount = currentCount;
+	}
+
+	private long CurrentCount = 0;
+	
 	@Transient
 	private MultipartFile ProductFile;
 

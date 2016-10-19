@@ -56,7 +56,8 @@
  <div class="container">
 <div class="xyz">
 <img src="${pageContext.request.contextPath}/resources/images/thanku.jpg" width="100%" height="500px;"/> 
-<a href="${pageContext.request.contextPath}/index" class="btn btn-success pull-center"><span class="glyphicon glyphicon-chevron-left"></span>BACK TO HOME</a>
+<br><br><br>
+<a href="${pageContext.request.contextPath}/index" class="btn btn-success pull-center">BACK TO HOME</a>
 </div>
 </div>
 </body>
